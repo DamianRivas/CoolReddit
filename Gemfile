@@ -49,3 +49,5 @@ group :test do
 end
 
 gem 'bootstrap-sass'
+
+ruby '2.4.1'
