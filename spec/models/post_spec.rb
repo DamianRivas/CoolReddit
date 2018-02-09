@@ -8,12 +8,4 @@ RSpec.describe Post, type: :model do
       expect(post).to have_attributes(title: "New Post Title", body: "New Post Body")
     end
   end
-  
-  describe "#censor" do
-    it "censors the title of a given post" do
-      post.censor
-      
-      expect(post.title).to eq "SPAM"
-    end
-  end
 end
