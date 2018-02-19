@@ -52,3 +52,6 @@ end
 gem 'bootstrap-sass'
 
 ruby '2.4.1'
+
+# Used for encrypting passwords
+gem 'bcrypt'
