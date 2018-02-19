@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let (:user) { User.create!(name: "CoolReddit User", email: "user@gmail.com", password: "password") }
+  let (:user) { User.create!(name: "Coolreddit User", email: "user@gmail.com", password: "password") }
   
   # Shoulda tests
   it { is_expected.to validate_presence_of(:name) }
@@ -18,7 +18,15 @@ RSpec.describe User, type: :model do
   
   describe "attributes" do
     it "should have name and email attributes" do
-      expect(user).to have_attributes(name: "CoolReddit User", email: "user@gmail.com")
+      expect(user).to have_attributes(name: "Coolreddit User", email: "user@gmail.com")
+    end
+  end
+  
+  describe "name" do
+    let(:new_user) { User.create!(name: "damian rivas", email: "damian@damian.com", password: "password") }
+    
+    it "should capitalize every word in name" do
+      expect(new_user.name).to eq "Damian Rivas"
     end
   end
   
