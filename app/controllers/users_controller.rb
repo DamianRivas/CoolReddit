@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     
     if @user.save
       redirect_to root_path, notice: "Welcome to CoolReddit #{@user.name}!"
+      create_session(@user)
     else
       flash.now[:alert] = "There was an error creating your account. Please try again."
       render :new
