@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
+  after_create :favorite_self_for_creator
+  
   default_scope { order('rank DESC') }
   
   validates :title, length: { minimum: 5 }, presence: true
@@ -28,5 +30,13 @@ class Post < ApplicationRecord
     age_in_days = (created_at - Time.new(1970, 1, 1)) / 1.day.seconds
     new_rank = points + age_in_days
     update_attribute(:rank, new_rank)
+  end
+  
+  private
+  
+  def favorite_self_for_creator
+    self.user.favorites.create(post: self)
+    
+    FavoriteMailer.new_post(self.user, self).deliver_now
   end
 end

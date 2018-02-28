@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>New Post: "<%= @post.title %>"</h1>
+    <small>
+      By: <%= @post.user.name %>
+    </small>
+    <p>
+      <%= @post.body %>
+    </p>
+    <p>
+      <%= link_to "View post on site", topic_post_url(@post.topic, @post) %>
+    </p>
+    <p>
+      This post has automatically been favorited for you. You will continue to receive e-mail updates every time a new comment is posted on it. To cancel these e-mail updates, simply unfavorite your post.
+    </p>
+  </body>
+</html>
