@@ -19,8 +19,28 @@
   </div>
 </div>
 
-<h2>Posts</h2>
-<%= render @user.posts %>
+<% if posts_comments_exist?(@user.posts) %>
+  <h2>Posts</h2>
+  <%= render @user.posts %>
+<% else %>
+  <h2>No Posts</h2>
+<% end %>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+<% if posts_comments_exist?(@user.comments) %>
+  <h2>Comments</h2>
+  <%= render @user.comments %>
+<% else %>
+  <h2>No Comments</h2>
+<% end %>
+
+<% if posts_comments_exist?(@user.all_favorites) %>
+  <h2>Favorites</h2>
+  <% @user.all_favorites.each do |favorite| %>
+    <div>
+      <%= image_tag favorite.post.user.avatar_url(65), class: 'pull-left' %>
+      <%= render favorite.post %>
+    </div>
+  <% end %>
+<% else %>
+  <h2>No Favorites</h2>
+<% end %>
